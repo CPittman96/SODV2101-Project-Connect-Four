@@ -88,7 +88,7 @@ namespace ConnectFourApp
         }
         private void isWinner(int x, int y, Button[,] btnTable, Image color)
         {
-            int redC = 1;
+            /*int redC = 1;
             int yellowC=0;
             if(color == red)
             {
@@ -109,8 +109,9 @@ namespace ConnectFourApp
                     yellowC++;
                 }
             }
-            Console.WriteLine("red is " + redC);
-            Console.WriteLine("yellow is " + yellowC);
+            */
+            //Console.WriteLine("red is " + redC);
+            //Console.WriteLine("yellow is " + yellowC);
         }
         private void canPlace(int x, Button[,] btnTable) { 
             Image putImg = white;
@@ -124,6 +125,8 @@ namespace ConnectFourApp
                 putImg = yellow;
                 turn = true;
             }
+
+            //the location comes in with a diffrent number so this sets it to the correct number
             switch(x)
             {
                 case 612:
@@ -148,7 +151,7 @@ namespace ConnectFourApp
                     x = 0;
                     break;
             }
-
+            //this put thes checker at the bottom
             if (btnTable[x, 5].BackgroundImage == white)
             {
                 btnTable[x, 5].BackgroundImage = putImg;
