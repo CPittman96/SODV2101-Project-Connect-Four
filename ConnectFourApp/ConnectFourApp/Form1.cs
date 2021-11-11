@@ -23,6 +23,7 @@ namespace ConnectFourApp
         static Button[,] btnTable = new Button[ConnectBoard.SizeW, ConnectBoard.SizeH];
         bool turn = true;
         bool winner = false;
+        bool draw = false;
         Button prevButton;
 
         private void generateTable()
@@ -70,7 +71,7 @@ namespace ConnectFourApp
             Button clickedBtn = (Button)sender;
             Cell thisCell = new Cell(clickedBtn.Location.X, clickedBtn.Location.Y);
 
-            if(clickedBtn.BackgroundImage == white && winner == false)
+            if(clickedBtn.BackgroundImage == white && winner == false && draw == false)
             {
                 //if (turn)
                 //{
