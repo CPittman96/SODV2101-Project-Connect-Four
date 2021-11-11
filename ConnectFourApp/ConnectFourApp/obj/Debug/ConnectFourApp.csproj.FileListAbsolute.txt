@@ -1,0 +1,10 @@
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\bin\Debug\ConnectFourApp.exe.config
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\bin\Debug\ConnectFourApp.exe
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\bin\Debug\ConnectFourApp.pdb
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.AssemblyReference.cache
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.ConnectFourBoard.resources
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.Properties.Resources.resources
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.GenerateResource.cache
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.CoreCompileInputs.cache
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.exe
+C:\Users\Gunzf\source\repos\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.pdb
