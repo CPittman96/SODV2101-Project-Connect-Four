@@ -18,3 +18,12 @@ C:\Users\Gunzf\source\repos\ConnectFourApp\SODV2101-Project-Connect-Four\Connect
 C:\Users\Gunzf\source\repos\ConnectFourApp\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.CoreCompileInputs.cache
 C:\Users\Gunzf\source\repos\ConnectFourApp\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.exe
 C:\Users\Gunzf\source\repos\ConnectFourApp\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.pdb
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\ConnectFourApp.exe.config
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\ConnectFourApp.exe
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\ConnectFourApp.pdb
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.ConnectFourBoard.resources
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.Properties.Resources.resources
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.GenerateResource.cache
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.CoreCompileInputs.cache
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.exe
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.pdb
