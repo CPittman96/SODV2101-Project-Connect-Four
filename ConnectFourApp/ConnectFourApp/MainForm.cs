@@ -189,5 +189,19 @@ namespace ConnectFourApp
             }
         }
 
+        private void btnResetGame_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMusicToggle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEffectsToggle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

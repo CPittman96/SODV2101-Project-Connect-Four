@@ -27,3 +27,4 @@ F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\Conne
 F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.CoreCompileInputs.cache
 F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.exe
 F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.pdb
+F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.AssemblyReference.cache
