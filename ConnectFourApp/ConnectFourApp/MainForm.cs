@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +26,10 @@ namespace ConnectFourApp
         bool winner = false;
         bool draw = false;
         Button prevButton;
+        SoundPlayer playerMusic = new SoundPlayer();
+        SoundPlayer playerSound = new SoundPlayer();
+        bool musicToggle = true;
+        bool effectToggle = true;
 
         private void generateTable()
         {
@@ -54,8 +59,6 @@ namespace ConnectFourApp
             }
         }
 
-        
-
         public ConnectFourBoard()
         {
             InitializeComponent();
@@ -64,15 +67,35 @@ namespace ConnectFourApp
 
         private void ConnectFourBoard_Load(object sender, EventArgs e)
         {
-            //this.Size = new Size(1000, 900);
+
         }
+
         private void TableBtnClick(object sender, EventArgs e)
         {
             Button clickedBtn = (Button)sender;
             Cell thisCell = new Cell(clickedBtn.Location.X, clickedBtn.Location.Y);
 
-            if(clickedBtn.BackgroundImage == white && winner == false && draw == false)
+            // Clicking on an occupied tile (red/yellow)
+            if ((clickedBtn.BackgroundImage == red || clickedBtn.BackgroundImage == yellow) && winner == false && draw == false)
             {
+                // Check if sound effects are toggled on
+                if (effectToggle == true)
+                {
+                    // Play this sound effect when clicking on an occupied tile (red/yellow)
+                    SystemSounds.Asterisk.Play();
+                }
+            }
+
+            // Clicking on an empty tile (white)
+            if (clickedBtn.BackgroundImage == white && winner == false && draw == false)
+            {
+                // Check if sound effects are toggled on
+                if (effectToggle == true)
+                {
+                    // Play this sound effect when clicking on an empty tile (white)
+                    SystemSounds.Hand.Play();
+                }
+
                 //if (turn)
                 //{
                 //    canPlace(thisCell, btnTable);
@@ -87,6 +110,7 @@ namespace ConnectFourApp
                 canPlace(clickedBtn.Location.X, btnTable);
             }
         }
+
         private void isWinner(int x, int y, Button[,] btnTable, Image color)
         {
             /*int redC = 1;
@@ -114,6 +138,7 @@ namespace ConnectFourApp
             //Console.WriteLine("red is " + redC);
             //Console.WriteLine("yellow is " + yellowC);
         }
+
         private void canPlace(int x, Button[,] btnTable) { 
             Image putImg = white;
             int y = -1;
@@ -191,17 +216,37 @@ namespace ConnectFourApp
 
         private void btnResetGame_Click(object sender, EventArgs e)
         {
+            // Clear game board (set all tiles to white)
 
+            // Set score tracker values to zero
         }
 
         private void btnMusicToggle_Click(object sender, EventArgs e)
         {
+            // Turn off music if currently on,
+            // otherwise turn on music
+            if (musicToggle == true)
+            {
 
+            }
+            else
+            {
+
+            }
         }
 
         private void btnEffectsToggle_Click(object sender, EventArgs e)
         {
-
+            // Set effectToggle to false if currently true,
+            // otherwise set effectToggle to true
+            if (effectToggle == true)
+            {
+                effectToggle = false;
+            }
+            else
+            {
+                effectToggle = true;
+            }
         }
     }
 }
