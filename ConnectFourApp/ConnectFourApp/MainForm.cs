@@ -30,6 +30,8 @@ namespace ConnectFourApp
         SoundPlayer playerSound = new SoundPlayer();
         bool musicToggle = true;
         bool effectToggle = true;
+        int redPlayerScore = 0;
+        int yellowPlayerScore = 0;
 
         private void generateTable()
         {
@@ -67,7 +69,10 @@ namespace ConnectFourApp
 
         private void ConnectFourBoard_Load(object sender, EventArgs e)
         {
-
+            lblScoreNumRed.Text = redPlayerScore.ToString();
+            lblScoreNumYellow.Text = yellowPlayerScore.ToString();
+            lblTurnColour.Text = "Red";
+            turn = true;
         }
 
         private void TableBtnClick(object sender, EventArgs e)
@@ -107,6 +112,18 @@ namespace ConnectFourApp
                 //    turn = true;
                 //}
                 //Console.WriteLine(clickedBtn.Location.X + " " + clickedBtn.Location.Y);
+
+                // Change Player Turn Label text
+                if (turn == false)
+                {
+                    lblTurnColour.Text = "Red";
+                }
+                else
+                {
+                    lblTurnColour.Text = "Yellow";
+                }
+
+                // Call function to place tile
                 canPlace(clickedBtn.Location.X, btnTable);
             }
         }
@@ -216,9 +233,22 @@ namespace ConnectFourApp
 
         private void btnResetGame_Click(object sender, EventArgs e)
         {
-            // Clear game board (set all tiles to white)
+            // Set all tiles to white (default)
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    btnTable[i, j].BackgroundImage = white;
+                }
+            }
 
-            // Set score tracker values to zero
+            // Set player turn to red (default)
+            lblTurnColour.Text = "Red";
+            turn = true;
+
+            // Set player scores to zero (default)
+            redPlayerScore = 0;
+            yellowPlayerScore = 0;
         }
 
         private void btnMusicToggle_Click(object sender, EventArgs e)
@@ -227,11 +257,19 @@ namespace ConnectFourApp
             // otherwise turn on music
             if (musicToggle == true)
             {
+                // Turn off music
 
+                //// insert code here
+
+                musicToggle = false;
             }
             else
             {
+                // Turn on music
 
+                //// insert code here
+
+                musicToggle = true;
             }
         }
 

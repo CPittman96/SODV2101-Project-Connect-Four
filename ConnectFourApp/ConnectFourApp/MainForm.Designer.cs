@@ -39,15 +39,15 @@ namespace ConnectFourApp
             this.lblScoreTitle = new System.Windows.Forms.Label();
             this.lblScoreYellow = new System.Windows.Forms.Label();
             this.lblTurnColour = new System.Windows.Forms.Label();
-            this.lblScoreNum1 = new System.Windows.Forms.Label();
-            this.lblScoreNum2 = new System.Windows.Forms.Label();
+            this.lblScoreNumRed = new System.Windows.Forms.Label();
+            this.lblScoreNumYellow = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblGameTitle
             // 
             this.lblGameTitle.AutoSize = true;
             this.lblGameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGameTitle.Location = new System.Drawing.Point(356, 5);
+            this.lblGameTitle.Location = new System.Drawing.Point(355, 17);
             this.lblGameTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGameTitle.Name = "lblGameTitle";
             this.lblGameTitle.Size = new System.Drawing.Size(261, 44);
@@ -146,33 +146,33 @@ namespace ConnectFourApp
             this.lblTurnColour.TabIndex = 9;
             this.lblTurnColour.Text = "Red";
             // 
-            // lblScoreNum1
+            // lblScoreNumRed
             // 
-            this.lblScoreNum1.AutoSize = true;
-            this.lblScoreNum1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreNum1.Location = new System.Drawing.Point(818, 55);
-            this.lblScoreNum1.Name = "lblScoreNum1";
-            this.lblScoreNum1.Size = new System.Drawing.Size(26, 29);
-            this.lblScoreNum1.TabIndex = 10;
-            this.lblScoreNum1.Text = "0";
+            this.lblScoreNumRed.AutoSize = true;
+            this.lblScoreNumRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreNumRed.Location = new System.Drawing.Point(818, 55);
+            this.lblScoreNumRed.Name = "lblScoreNumRed";
+            this.lblScoreNumRed.Size = new System.Drawing.Size(26, 29);
+            this.lblScoreNumRed.TabIndex = 10;
+            this.lblScoreNumRed.Text = "0";
             // 
-            // lblScoreNum2
+            // lblScoreNumYellow
             // 
-            this.lblScoreNum2.AutoSize = true;
-            this.lblScoreNum2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreNum2.Location = new System.Drawing.Point(818, 84);
-            this.lblScoreNum2.Name = "lblScoreNum2";
-            this.lblScoreNum2.Size = new System.Drawing.Size(26, 29);
-            this.lblScoreNum2.TabIndex = 11;
-            this.lblScoreNum2.Text = "0";
+            this.lblScoreNumYellow.AutoSize = true;
+            this.lblScoreNumYellow.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreNumYellow.Location = new System.Drawing.Point(818, 84);
+            this.lblScoreNumYellow.Name = "lblScoreNumYellow";
+            this.lblScoreNumYellow.Size = new System.Drawing.Size(26, 29);
+            this.lblScoreNumYellow.TabIndex = 11;
+            this.lblScoreNumYellow.Text = "0";
             // 
             // ConnectFourBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 861);
-            this.Controls.Add(this.lblScoreNum2);
-            this.Controls.Add(this.lblScoreNum1);
+            this.Controls.Add(this.lblScoreNumYellow);
+            this.Controls.Add(this.lblScoreNumRed);
             this.Controls.Add(this.lblTurnColour);
             this.Controls.Add(this.lblScoreYellow);
             this.Controls.Add(this.lblScoreTitle);
@@ -204,8 +204,8 @@ namespace ConnectFourApp
         private System.Windows.Forms.Label lblScoreTitle;
         private System.Windows.Forms.Label lblScoreYellow;
         private System.Windows.Forms.Label lblTurnColour;
-        private System.Windows.Forms.Label lblScoreNum1;
-        private System.Windows.Forms.Label lblScoreNum2;
+        private System.Windows.Forms.Label lblScoreNumRed;
+        private System.Windows.Forms.Label lblScoreNumYellow;
     }
 }
 
