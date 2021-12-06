@@ -26,8 +26,11 @@ namespace ConnectFourApp
         bool winner = false;
         bool draw = false;
         Button prevButton;
-        SoundPlayer playerMusic = new SoundPlayer();
-        SoundPlayer playerSound = new SoundPlayer();
+        public SoundPlayer gameMusicPlayer;
+        public SoundPlayer gameEffectPlayer1;
+        public SoundPlayer gameEffectPlayer2;
+        public SoundPlayer gameEffectPlayer3;
+        public SoundPlayer gameEffectPlayer4;
         bool musicToggle = true;
         bool effectToggle = true;
         int redPlayerScore = 0;
@@ -73,6 +76,8 @@ namespace ConnectFourApp
             lblScoreNumYellow.Text = yellowPlayerScore.ToString();
             lblTurnColour.Text = "Red";
             turn = true;
+            gameMusicStart();
+            gameSoundSetup();
         }
 
         private void TableBtnClick(object sender, EventArgs e)
@@ -87,7 +92,7 @@ namespace ConnectFourApp
                 if (effectToggle == true)
                 {
                     // Play this sound effect when clicking on an occupied tile (red/yellow)
-                    SystemSounds.Asterisk.Play();
+                    gameEffectPlayer2.Play();
                 }
             }
 
@@ -98,7 +103,7 @@ namespace ConnectFourApp
                 if (effectToggle == true)
                 {
                     // Play this sound effect when clicking on an empty tile (white)
-                    SystemSounds.Hand.Play();
+                    gameEffectPlayer1.Play();
                 }
 
                 //if (turn)
@@ -257,18 +262,14 @@ namespace ConnectFourApp
             // otherwise turn on music
             if (musicToggle == true)
             {
-                // Turn off music
-
-                //// insert code here
-
+                // Stop music
+                gameMusicPlayer.Stop();
                 musicToggle = false;
             }
             else
             {
-                // Turn on music
-
-                //// insert code here
-
+                // Resume music
+                gameMusicPlayer.PlayLooping();
                 musicToggle = true;
             }
         }
@@ -285,6 +286,31 @@ namespace ConnectFourApp
             {
                 effectToggle = true;
             }
+        }
+
+        public void gameMusicStart()
+        {
+            // Create SoundPlayer object for music
+            gameMusicPlayer = new SoundPlayer();
+            gameMusicPlayer.SoundLocation = "GameMusic (djgriffin__video-game-7).wav";
+
+            // Loop music
+            gameMusicPlayer.PlayLooping();
+        }
+
+        public void gameSoundSetup()
+        {
+            // Create SoundPlayer objects
+            gameEffectPlayer1 = new SoundPlayer();
+            gameEffectPlayer2 = new SoundPlayer();
+            gameEffectPlayer3 = new SoundPlayer();
+            gameEffectPlayer4 = new SoundPlayer();
+
+            // Assign SoundLocation to SoundPlayer objects
+            gameEffectPlayer1.SoundLocation = "GameEffectTilePlace (japanyoshithegamer__8-bit-soft-hi-hat).wav";
+            gameEffectPlayer2.SoundLocation = "GameEffectTileError (japanyoshithegamer__8-bit-wrong-sound).wav";
+            gameEffectPlayer3.SoundLocation = "GameEffectWin (mativve__electro-success-sound).wav";
+            gameEffectPlayer4.SoundLocation = "";
         }
     }
 }
