@@ -8,6 +8,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WMPLib;
 
 namespace ConnectFourApp
 {
@@ -20,19 +21,21 @@ namespace ConnectFourApp
         Image white = (Image)(new Bitmap(whiteImg, new Size(101, 101)));
         Image yellow = (Image)(new Bitmap(yellowImg, new Size(101, 101)));
         Image red = (Image)(new Bitmap(redImg, new Size(101, 101)));
-        static Board ConnectBoard = new Board(7,6);
+        static Board ConnectBoard = new Board(7, 6);
         static Button[,] btnTable = new Button[ConnectBoard.SizeW, ConnectBoard.SizeH];
         bool turn = true;
         bool winner = false;
         bool draw = false;
         Button prevButton;
-        public SoundPlayer gameMusicPlayer;
-        public SoundPlayer gameEffectPlayer1;
-        public SoundPlayer gameEffectPlayer2;
-        public SoundPlayer gameEffectPlayer3;
-        public SoundPlayer gameEffectPlayer4;
+        public WindowsMediaPlayer gameMusicPlayer;
+        public WindowsMediaPlayer gameEffectPlayer1;
+        public WindowsMediaPlayer gameEffectPlayer2;
+        public WindowsMediaPlayer gameEffectPlayer3;
+        public WindowsMediaPlayer gameEffectPlayer4;
         bool musicToggle = true;
         bool effectToggle = true;
+        public static float roundTotal = 0;
+        //int roundCurrent = 0;
         int redPlayerScore = 0;
         int yellowPlayerScore = 0;
 
@@ -78,6 +81,7 @@ namespace ConnectFourApp
             turn = true;
             gameMusicStart();
             gameSoundSetup();
+            gameScoreTrackBegin();
         }
 
         private void TableBtnClick(object sender, EventArgs e)
@@ -92,7 +96,8 @@ namespace ConnectFourApp
                 if (effectToggle == true)
                 {
                     // Play this sound effect when clicking on an occupied tile (red/yellow)
-                    gameEffectPlayer2.Play();
+                    gameEffectPlayer2.URL = "GameEffectTileError (japanyoshithegamer__8-bit-wrong-sound).wav";
+                    gameEffectPlayer2.controls.play();
                 }
             }
 
@@ -103,20 +108,9 @@ namespace ConnectFourApp
                 if (effectToggle == true)
                 {
                     // Play this sound effect when clicking on an empty tile (white)
-                    gameEffectPlayer1.Play();
+                    gameEffectPlayer1.URL = "GameEffectTilePlace (japanyoshithegamer__8-bit-soft-hi-hat).wav";
+                    gameEffectPlayer1.controls.play();
                 }
-
-                //if (turn)
-                //{
-                //    canPlace(thisCell, btnTable);
-                //    clickedBtn.BackgroundImage = red;
-                //    turn = false;
-                //}else
-                //{
-                //    clickedBtn.BackgroundImage = yellow;
-                //    turn = true;
-                //}
-                //Console.WriteLine(clickedBtn.Location.X + " " + clickedBtn.Location.Y);
 
                 // Change Player Turn Label text
                 if (turn == false)
@@ -161,7 +155,7 @@ namespace ConnectFourApp
             //Console.WriteLine("yellow is " + yellowC);
         }
 
-        private void canPlace(int x, Button[,] btnTable) { 
+        private void canPlace(int x, Button[,] btnTable) {
             Image putImg = white;
             int y = -1;
             if (turn)
@@ -175,15 +169,15 @@ namespace ConnectFourApp
             }
 
             //the location comes in with a diffrent number so this sets it to the correct number
-            switch(x)
+            switch (x)
             {
                 case 612:
                     x = 6;
                     break;
-                 case 510:
+                case 510:
                     x = 5;
                     break;
-                 case 408:
+                case 408:
                     x = 4;
                     break;
                 case 306:
@@ -199,13 +193,13 @@ namespace ConnectFourApp
                     x = 0;
                     break;
             }
-            //this put thes checker at the bottom
+            //this put the checker at the bottom
             if (btnTable[x, 5].BackgroundImage == white)
             {
                 btnTable[x, 5].BackgroundImage = putImg;
                 y = 5;
             }
-            else if(btnTable[x, 4].BackgroundImage == white)
+            else if (btnTable[x, 4].BackgroundImage == white)
             {
                 btnTable[x, 4].BackgroundImage = putImg;
                 y = 4;
@@ -263,13 +257,13 @@ namespace ConnectFourApp
             if (musicToggle == true)
             {
                 // Stop music
-                gameMusicPlayer.Stop();
+                gameMusicPlayer.controls.stop();
                 musicToggle = false;
             }
             else
             {
                 // Resume music
-                gameMusicPlayer.PlayLooping();
+                gameMusicPlayer.controls.play();
                 musicToggle = true;
             }
         }
@@ -290,27 +284,70 @@ namespace ConnectFourApp
 
         public void gameMusicStart()
         {
-            // Create SoundPlayer object for music
-            gameMusicPlayer = new SoundPlayer();
-            gameMusicPlayer.SoundLocation = "GameMusic (djgriffin__video-game-7).wav";
-
-            // Loop music
-            gameMusicPlayer.PlayLooping();
+            // Create WindowsMediaPlayer object for music
+            gameMusicPlayer = new WindowsMediaPlayer();
+            gameMusicPlayer.URL = "GameMusic (djgriffin__video-game-7).wav";
+            gameMusicPlayer.settings.volume = 10;
+            gameMusicPlayer.settings.setMode("Loop", true);
         }
 
         public void gameSoundSetup()
         {
-            // Create SoundPlayer objects
-            gameEffectPlayer1 = new SoundPlayer();
-            gameEffectPlayer2 = new SoundPlayer();
-            gameEffectPlayer3 = new SoundPlayer();
-            gameEffectPlayer4 = new SoundPlayer();
+            // Create WindowsMediaPlayer objects
+            gameEffectPlayer1 = new WindowsMediaPlayer();
+            gameEffectPlayer2 = new WindowsMediaPlayer();
+            gameEffectPlayer3 = new WindowsMediaPlayer();
+            gameEffectPlayer4 = new WindowsMediaPlayer();
 
-            // Assign SoundLocation to SoundPlayer objects
-            gameEffectPlayer1.SoundLocation = "GameEffectTilePlace (japanyoshithegamer__8-bit-soft-hi-hat).wav";
-            gameEffectPlayer2.SoundLocation = "GameEffectTileError (japanyoshithegamer__8-bit-wrong-sound).wav";
-            gameEffectPlayer3.SoundLocation = "GameEffectWin (mativve__electro-success-sound).wav";
-            gameEffectPlayer4.SoundLocation = "";
+            // Set volume setting for sound effects
+            gameEffectPlayer1.settings.volume = 100;
+            gameEffectPlayer2.settings.volume = 10;
+            gameEffectPlayer3.settings.volume = 100;
+            gameEffectPlayer4.settings.volume = 100;
+
+            // Insert the following at win condition check
+            //if (effectToggle == true)
+            //{
+            //gameEffectPlayer3.URL = "GameEffectWin (mativve__electro-success-sound).wav";
+            //gameEffectPlayer3.controls.play();
+            //}
+
+            // Insert the following at draw condition check
+            //if (effectToggle == true)
+            //{
+            //gameEffectPlayer4.URL = "GameEffectDraw (raclure__damage-sound-effect).wav";
+            //gameEffectPlayer4.controls.play();
+            //}
+        }
+
+        public void gameScoreTrackBegin()
+        {
+            RoundSelect roundSelect = new RoundSelect();
+
+            roundSelect.Show();
+        }
+
+        public void gameScoreTrackWin()
+        {
+            if (redPlayerScore == yellowPlayerScore)
+            {
+                // Draw between Red Player and Yellow Player
+
+            }
+            else if (redPlayerScore > (roundTotal / 2))
+            {
+                // Red Player wins current game
+
+            }
+            else if (yellowPlayerScore > (roundTotal / 2))
+            {
+                // Yellow Player wins current game
+
+            }
+            else
+            {
+                // No win or draw conditions met
+            }
         }
     }
 }
