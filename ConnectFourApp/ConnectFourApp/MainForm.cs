@@ -283,19 +283,15 @@ namespace ConnectFourApp
             {
                 if (btnTable[x, y].BackgroundImage == color)
                 {
-                    Console.WriteLine("+0");
                     amount++;
                     if (btnTable[x + 1, y + 1].BackgroundImage == color)
                     {
-                        Console.WriteLine("+1");
                         amount++;
                         if (btnTable[x + 2, y + 2].BackgroundImage == color)
                         {
-                            Console.WriteLine("+2");
                             amount++;
                             if (btnTable[x + 3, y + 3].BackgroundImage == color)
                             {
-                                Console.WriteLine("+3");
                                 amount++;
                             }
                         }
@@ -313,19 +309,15 @@ namespace ConnectFourApp
             {
                 if (btnTable[x, y].BackgroundImage == color)
                 {
-                    Console.WriteLine("-0");
                     amount++;
                     if (btnTable[x - 1, y + 1].BackgroundImage == color)
                     {
-                        Console.WriteLine("-1");
                         amount++;
                         if (btnTable[x - 2, y + 2].BackgroundImage == color)
                         {
-                            Console.WriteLine("-2");
                             amount++;
                             if (btnTable[x - 3, y + 3].BackgroundImage == color)
                             {
-                                Console.WriteLine("-3");
                                 amount++;
                             }
                         }
@@ -488,6 +480,7 @@ namespace ConnectFourApp
                     btnTable[x, 0].BackgroundImage = putImg;
                     y = 0;
                 }
+                //this is a failsafe so this code wont run unless you actually place a checker because this is the checks for winner/draw
                 if (y != -1)
                 {
                     checkVert(putImg, x, y, btnTable);
