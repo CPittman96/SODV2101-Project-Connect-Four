@@ -10,6 +10,29 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
 
+// SODV2101: Rapid Application Development
+// Design Project
+// Instructor: Dima Mirachi
+// Group 1: Connor Pittman, Karamveer Sidhu
+
+// Audio file sources (All downloaded from freesound.org)
+// https://freesound.org/
+
+// Video Game 7.wav by djgriffin
+// https://freesound.org/people/djgriffin/sounds/172561/
+
+// 8-bit Soft Hi-Hat by JapanYoshiTheGamer
+// https://freesound.org/people/JapanYoshiTheGamer/sounds/361267/
+
+// 8-bit Wrong Sound by JapanYoshiTheGamer
+// https://freesound.org/people/JapanYoshiTheGamer/sounds/361260/
+
+// Electro success sound by Mativve
+// https://freesound.org/people/Mativve/sounds/391540/
+
+// Damage sound effect by Raclure
+// https://freesound.org/people/Raclure/sounds/458867/
+
 namespace ConnectFourApp
 {
     public partial class ConnectFourBoard : Form
@@ -34,16 +57,17 @@ namespace ConnectFourApp
         public WindowsMediaPlayer gameEffectPlayer4;
         private bool musicToggle = true;
         private bool effectToggle = true;
-        public static float roundTotal = 0;
-        public static float roundCurrent = 0;
+        public float roundTotal = 0;
+        public float roundCurrent = 0;
         public int drawNum = 0;
         public bool isWinner = false;
         public bool isDraw = false;
-        public static string winTitle = "Connect Four";
+        public static string winTitle = "Connect Four Game";
         public static string redText = "Red wins!!!";
         public static string yellowText = "Yellow wins!!!";
         private int redPlayerScore = 0;
         private int yellowPlayerScore = 0;
+        string[] oddRounds = new string[] { "1", "3", "5", "7", "9" };
 
         private void generateTable()
         {
@@ -81,13 +105,17 @@ namespace ConnectFourApp
 
         private void ConnectFourBoard_Load(object sender, EventArgs e)
         {
+            // Add values to combo box
+            comboBoxRoundSelect.Items.AddRange(oddRounds);
+            // Set default display value to 1
+            comboBoxRoundSelect.Text = "1";
+
             lblScoreNumRed.Text = redPlayerScore.ToString();
             lblScoreNumYellow.Text = yellowPlayerScore.ToString();
             lblTurnColour.Text = "Red";
             turn = true;
             gameMusicStart();
             gameSoundSetup();
-            gameScoreTrackBegin();
         }
 
         private void TableBtnClick(object sender, EventArgs e)
@@ -137,8 +165,8 @@ namespace ConnectFourApp
         {
             if (amount == 4)
             {
-                Console.WriteLine("We have a Winner!");
-                isWinner = true;
+                // A chain of 4 matching tiles has been found
+                winner = true;
 
                 // Win sound effect
                 if (effectToggle == true)
@@ -146,7 +174,6 @@ namespace ConnectFourApp
                     gameEffectPlayer3.URL = "GameEffectWin (mativve__electro-success-sound).wav";
                     gameEffectPlayer3.controls.play();
                 }
-                gameScoreTrackWin();
 
                 // Update Form label based on which player wins
                 if (lblTurnColour.Text == "Yellow") 
@@ -159,10 +186,14 @@ namespace ConnectFourApp
                     yellowPlayerScore++;
                     lblScoreNumYellow.Text = yellowPlayerScore.ToString();
                 }
-                
+
+                roundCurrent++;
+                lblRoundNum.Text = roundCurrent.ToString();
+
             }
             else
             {
+                // A chain of 4 matching tiles was not found, set amount back to 0
                 amount = 0;
             }
         }
@@ -190,6 +221,7 @@ namespace ConnectFourApp
                     }
                 }
                 checkAmount(amount);
+                gameCheckWin();
             }
             catch
             {
@@ -219,6 +251,7 @@ namespace ConnectFourApp
                     }
                 }
                 checkAmount(amount);
+                gameCheckWin();
             }
             catch { }
         }
@@ -246,6 +279,7 @@ namespace ConnectFourApp
                     }
                 }
                 checkAmount(amount);
+                gameCheckWin();
             }
             catch { }
         }
@@ -273,6 +307,7 @@ namespace ConnectFourApp
                     }
                 }
                 checkAmount(amount);
+                gameCheckWin();
             }
             catch { }
         }
@@ -299,7 +334,8 @@ namespace ConnectFourApp
                         }
                     }
                 }
-                checkAmount(amount); ;
+                checkAmount(amount);
+                gameCheckWin();
             }
             catch { }
         }
@@ -326,7 +362,8 @@ namespace ConnectFourApp
                         }
                     }
                 }
-                checkAmount(amount); ;
+                checkAmount(amount);
+                gameCheckWin();
             }
             catch { }
         }
@@ -353,7 +390,8 @@ namespace ConnectFourApp
                         }
                     }
                 }
-                checkAmount(amount); ;
+                checkAmount(amount);
+                gameCheckWin();
             }
             catch { }
         }
@@ -380,7 +418,8 @@ namespace ConnectFourApp
                         }
                     }
                 }
-                checkAmount(amount); ;
+                checkAmount(amount);
+                gameCheckWin();
             }
             catch { }
         }
@@ -407,14 +446,15 @@ namespace ConnectFourApp
                         }
                     }
                 }
-                checkAmount(amount); ;
+                checkAmount(amount);
+                gameCheckWin();
             }
             catch { }
         }
 
         private void isRndDraw()
         {
-            // Check if all available tiles are filled (white tiles == empty)
+            // Check if all tiles are filled (white tiles == empty)
             int number = 0;
             for (int i = 0; i < 7; i++)
             {
@@ -426,33 +466,46 @@ namespace ConnectFourApp
                     }
                 }
             }
-            // Board Size (6 * 7) = 42
+
+            // Board Size is 42 = (6 * 7) 
             if (number >= 42)
             {
                 isDraw = true;
 
-            }
-            if (isDraw == true)
-            {
                 // Sound effect for draw condition
                 if (effectToggle == true)
                 {
-                    gameEffectPlayer4.URL = "GameEffectDraw (raclure__damage-sound-effect).wav";
+                    gameEffectPlayer4.URL = "GameEffectDraw (raclure__damage-sound-effect).mp3";
                     gameEffectPlayer4.controls.play();
                 }
 
                 // Update count of draws in current game
                 drawNum++;
                 lblScoreNumDraw.Text = drawNum.ToString();
+
+                gameCheckWin();
+
+                // Reset game board for next round
+                for (int i = 0; i < 7; i++)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        btnTable[i, j].BackgroundImage = white;
+                    }
+                }
+                isWinner = false;
+                isDraw = false;
+                lblTurnColour.Text = "Red";
+                turn = true;
             }
         }
 
         private void canPlace(int x, Button[,] btnTable)
         {
             Image putImg = white;
-
             int y = -1;
 
+            //only place tile if winner and draw are both false
             if (isWinner == false && isDraw == false)
             {
                 if (turn)
@@ -466,7 +519,7 @@ namespace ConnectFourApp
                     turn = true;
                 }
 
-                //the location comes in with a diffrent number so this sets it to the correct number
+                //the location comes in with a different number so this sets it to the correct number
                 switch (x)
                 {
                     case 612:
@@ -557,6 +610,8 @@ namespace ConnectFourApp
                 }
             }
 
+            winner = false;
+            draw = false;
             isWinner = false;
             isDraw = false;
 
@@ -564,7 +619,7 @@ namespace ConnectFourApp
             lblTurnColour.Text = "Red";
             turn = true;
 
-            // Set player scores to zero (default)
+            // Set player scores to default values
             redPlayerScore = 0;
             lblScoreNumRed.Text = redPlayerScore.ToString();
             yellowPlayerScore = 0;
@@ -629,38 +684,13 @@ namespace ConnectFourApp
             gameEffectPlayer1.settings.volume = 100;
             gameEffectPlayer2.settings.volume = 10;
             gameEffectPlayer3.settings.volume = 100;
-            gameEffectPlayer4.settings.volume = 100;
-
-            // Insert the following at win condition check
-            //if (effectToggle == true)
-            //{
-            //gameEffectPlayer3.URL = "GameEffectWin (mativve__electro-success-sound).wav";
-            //gameEffectPlayer3.controls.play();
-            //}
-
-            // Insert the following at draw condition check
-            //if (effectToggle == true)
-            //{
-            //gameEffectPlayer4.URL = "GameEffectDraw (raclure__damage-sound-effect).wav";
-            //gameEffectPlayer4.controls.play();
-            //}
+            gameEffectPlayer4.settings.volume = 60;
         }
 
-        public void gameScoreTrackBegin()
+        public void gameCheckWin()
         {
-            // Create Form window for round select
-            RoundSelect roundSelect = new RoundSelect();
-            roundSelect.Show();
-        }
-
-        public void gameScoreTrackWin()
-        {
-            if (redPlayerScore > (roundTotal / 2))
+            if (winner == true)
             {
-                // Red Player wins current game
-                //MessageBox messageWinRed; 
-                MessageBox.Show(redText, winTitle);
-
                 // Reset game board for next round
                 for (int i = 0; i < 7; i++)
                 {
@@ -669,39 +699,92 @@ namespace ConnectFourApp
                         btnTable[i, j].BackgroundImage = white;
                     }
                 }
-                isWinner = false;
-                isDraw = false;
+
                 lblTurnColour.Text = "Red";
                 turn = true;
-                redPlayerScore = 0;
-                yellowPlayerScore = 0;
-                drawNum = 0;
-                roundTotal = 0;
+                winner = false;
+                draw = false;
+                isWinner = false;
+                isDraw = false;
 
-            }
-            else if (yellowPlayerScore > (roundTotal / 2))
-            {
-                // Yellow Player wins current game
-                //MessageBox messageWinYellow; 
-                MessageBox.Show(yellowText, winTitle);
-
-                // Reset game board for next round
-                for (int i = 0; i < 7; i++)
+                if (redPlayerScore == ((roundTotal + 1) / 2))
                 {
-                    for (int j = 0; j < 6; j++)
-                    {
-                        btnTable[i, j].BackgroundImage = white;
-                    }
+                    // Red Player wins current game
+                    MessageBox.Show(redText, winTitle);
+
+                    // Set score values to defaults
+                    redPlayerScore = 0;
+                    lblScoreNumRed.Text = redPlayerScore.ToString();
+                    yellowPlayerScore = 0;
+                    lblScoreNumYellow.Text = yellowPlayerScore.ToString();
+                    drawNum = 0;
+                    lblScoreNumDraw.Text = drawNum.ToString();
+                    roundCurrent = 0;
+                    lblRoundNum.Text = roundCurrent.ToString();
+                    roundTotal = 0;
                 }
-                isWinner = false;
-                isDraw = false;
-                lblTurnColour.Text = "Red";
-                turn = true;
-                redPlayerScore = 0;
-                yellowPlayerScore = 0;
-                drawNum = 0;
-                roundTotal = 0;
+                else if (yellowPlayerScore == ((roundTotal + 1) / 2))
+                {
+                    // Yellow Player wins current game
+                    MessageBox.Show(yellowText, winTitle);
+
+                    // Set score values to defaults
+                    redPlayerScore = 0;
+                    lblScoreNumRed.Text = redPlayerScore.ToString();
+                    yellowPlayerScore = 0;
+                    lblScoreNumYellow.Text = yellowPlayerScore.ToString();
+                    drawNum = 0;
+                    lblScoreNumDraw.Text = drawNum.ToString();
+                    roundCurrent = 0;
+                    lblRoundNum.Text = roundCurrent.ToString();
+                    roundTotal = 0;
+                }
             }
+        }
+
+        private void btnRoundSelect_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Check value in combo box, then assign that value to roundTotal
+            if (comboBoxRoundSelect.Text == "3")
+            {
+                roundTotal = 3;
+                roundCurrent = 0;
+            }
+            else if (comboBoxRoundSelect.Text == "5")
+            {
+                roundTotal = 5;
+                roundCurrent = 0;
+            }
+            else if (comboBoxRoundSelect.Text == "7")
+            {
+                roundTotal = 7;
+                roundCurrent = 0;
+            }
+            else if (comboBoxRoundSelect.Text == "9")
+            {
+                roundTotal = 9;
+                roundCurrent = 0;
+            }
+            else
+            {
+                roundTotal = 1;
+                roundCurrent = 0;
+            }
+        }
+
+        private void lblRoundSelectTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRoundSelect_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxRoundSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
