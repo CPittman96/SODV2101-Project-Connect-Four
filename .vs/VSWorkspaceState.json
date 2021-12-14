@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\ConnectFourApp",
-    "\\ConnectFourApp\\ConnectFourApp"
+    ""
   ],
-  "SelectedNode": "\\ConnectFourApp\\ConnectFourApp\\MainForm.cs",
+  "SelectedNode": "\\ConnectFourApp.sln",
   "PreviewInSolutionExplorer": false
 }

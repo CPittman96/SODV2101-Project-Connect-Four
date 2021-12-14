@@ -35,3 +35,20 @@ F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\Conne
 F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\Microsoft.DirectX.Direct3D.xml
 F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.CopyComplete
 F:\Programs\GitHub Repository\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.RoundSelect.resources
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\ConnectFourApp.exe.config
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\ConnectFourApp.exe
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\ConnectFourApp.pdb
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\Microsoft.DirectX.AudioVideoPlayback.dll
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\Microsoft.DirectX.dll
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\Microsoft.DirectX.Direct3D.dll
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\bin\Debug\Microsoft.DirectX.Direct3D.xml
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.AssemblyReference.cache
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.ConnectFourBoard.resources
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.Properties.Resources.resources
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.RoundSelect.resources
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.GenerateResource.cache
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.CoreCompileInputs.cache
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.csproj.CopyComplete
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.exe
+C:\Users\Gunzf\source\repos\GitHub\CPittman96\SODV2101-Project-Connect-Four\ConnectFourApp\ConnectFourApp\obj\Debug\ConnectFourApp.pdb
