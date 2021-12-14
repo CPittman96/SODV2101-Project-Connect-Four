@@ -35,17 +35,19 @@ namespace ConnectFourApp
         private bool musicToggle = true;
         private bool effectToggle = true;
         public static float roundTotal = 0;
+        public static float roundCurrent = 0;
+        public int drawNum = 0;
         public bool isWinner = false;
         public bool isDraw = false;
-
-        //int roundCurrent = 0;
+        public static string winTitle = "Connect Four";
+        public static string redText = "Red wins!!!";
+        public static string yellowText = "Yellow wins!!!";
         private int redPlayerScore = 0;
-
         private int yellowPlayerScore = 0;
 
         private void generateTable()
         {
-            //panel.BackgroundImage = red;
+            // Create table of buttons as game board
             int btnSize = panel.Width / 7;
 
             panel.Height = btnSize * 6;
@@ -137,6 +139,27 @@ namespace ConnectFourApp
             {
                 Console.WriteLine("We have a Winner!");
                 isWinner = true;
+
+                // Win sound effect
+                if (effectToggle == true)
+                {
+                    gameEffectPlayer3.URL = "GameEffectWin (mativve__electro-success-sound).wav";
+                    gameEffectPlayer3.controls.play();
+                }
+                gameScoreTrackWin();
+
+                // Update Form label based on which player wins
+                if (lblTurnColour.Text == "Yellow") 
+                {
+                    redPlayerScore++;
+                    lblScoreNumRed.Text = redPlayerScore.ToString();
+                }
+                else
+                {
+                    yellowPlayerScore++;
+                    lblScoreNumYellow.Text = yellowPlayerScore.ToString();
+                }
+                
             }
             else
             {
@@ -146,6 +169,7 @@ namespace ConnectFourApp
 
         private void checkVert(Image color, int x, int y, Button[,] btnTable)
         {
+            // Check for vertical chain of 4 tiles of the same colour
             int amount = 0;
             try
             {
@@ -174,6 +198,7 @@ namespace ConnectFourApp
 
         private void checkHorz1(Image color, int x, int y, Button[,] btnTable)
         {
+            // Check for horizontal chain of 4 tiles of the same colour
             int amount = 0;
             try
             {
@@ -200,6 +225,7 @@ namespace ConnectFourApp
 
         private void checkHorz2(Image color, int x, int y, Button[,] btnTable)
         {
+            // Check for horizontal chain of 4 tiles of the same colour
             int amount = 0;
             try
             {
@@ -226,6 +252,7 @@ namespace ConnectFourApp
 
         private void checkHorz3(Image color, int x, int y, Button[,] btnTable)
         {
+            // Check for horizontal chain of 4 tiles of the same colour
             int amount = 0;
             try
             {
@@ -252,6 +279,7 @@ namespace ConnectFourApp
 
         private void checkHorz4(Image color, int x, int y, Button[,] btnTable)
         {
+            // Check for horizontal chain of 4 tiles of the same colour
             int amount = 0;
             try
             {
@@ -278,6 +306,7 @@ namespace ConnectFourApp
 
         private void checkCross1(Image color, int x, int y, Button[,] btnTable)
         {
+            // Check for diagonal chain of 4 tiles of the same colour
             int amount = 0;
             try
             {
@@ -304,6 +333,7 @@ namespace ConnectFourApp
 
         private void checkCross2(Image color, int x, int y, Button[,] btnTable)
         {
+            // Check for diagonal chain of 4 tiles of the same colour
             int amount = 0;
             try
             {
@@ -330,6 +360,7 @@ namespace ConnectFourApp
 
         private void checkCross3(Image color, int x, int y, Button[,] btnTable)
         {
+            // Check for diagonal chain of 4 tiles of the same colour
             int amount = 0;
             try
             {
@@ -356,6 +387,7 @@ namespace ConnectFourApp
 
         private void checkCross4(Image color, int x, int y, Button[,] btnTable)
         {
+            // Check for diagonal chain of 4 tiles of the same colour
             int amount = 0;
             try
             {
@@ -382,6 +414,7 @@ namespace ConnectFourApp
 
         private void isRndDraw()
         {
+            // Check if all available tiles are filled (white tiles == empty)
             int number = 0;
             for (int i = 0; i < 7; i++)
             {
@@ -393,9 +426,24 @@ namespace ConnectFourApp
                     }
                 }
             }
+            // Board Size (6 * 7) = 42
             if (number >= 42)
             {
                 isDraw = true;
+
+            }
+            if (isDraw == true)
+            {
+                // Sound effect for draw condition
+                if (effectToggle == true)
+                {
+                    gameEffectPlayer4.URL = "GameEffectDraw (raclure__damage-sound-effect).wav";
+                    gameEffectPlayer4.controls.play();
+                }
+
+                // Update count of draws in current game
+                drawNum++;
+                lblScoreNumDraw.Text = drawNum.ToString();
             }
         }
 
@@ -449,7 +497,7 @@ namespace ConnectFourApp
                         x = 0;
                         break;
                 }
-                //this put the checker at the bottom
+                //this puts the checker at the bottom position
                 if (btnTable[x, 5].BackgroundImage == white)
                 {
                     btnTable[x, 5].BackgroundImage = putImg;
@@ -483,6 +531,7 @@ namespace ConnectFourApp
                 //this is a failsafe so this code wont run unless you actually place a checker because this is the checks for winner/draw
                 if (y != -1)
                 {
+                    // Checks for win/draw conditions
                     checkVert(putImg, x, y, btnTable);
                     checkHorz1(putImg, x, y, btnTable);
                     checkHorz2(putImg, x, y, btnTable);
@@ -517,7 +566,14 @@ namespace ConnectFourApp
 
             // Set player scores to zero (default)
             redPlayerScore = 0;
+            lblScoreNumRed.Text = redPlayerScore.ToString();
             yellowPlayerScore = 0;
+            lblScoreNumYellow.Text = yellowPlayerScore.ToString();
+            drawNum = 0;
+            lblScoreNumDraw.Text = drawNum.ToString();
+            roundTotal = 0;
+            roundCurrent = 0;
+            lblRoundNum.Text = roundCurrent.ToString();
         }
 
         private void btnMusicToggle_Click(object sender, EventArgs e)
@@ -592,28 +648,59 @@ namespace ConnectFourApp
 
         public void gameScoreTrackBegin()
         {
+            // Create Form window for round select
             RoundSelect roundSelect = new RoundSelect();
-
             roundSelect.Show();
         }
 
         public void gameScoreTrackWin()
         {
-            if (redPlayerScore == yellowPlayerScore)
-            {
-                // Draw between Red Player and Yellow Player
-            }
-            else if (redPlayerScore > (roundTotal / 2))
+            if (redPlayerScore > (roundTotal / 2))
             {
                 // Red Player wins current game
+                //MessageBox messageWinRed; 
+                MessageBox.Show(redText, winTitle);
+
+                // Reset game board for next round
+                for (int i = 0; i < 7; i++)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        btnTable[i, j].BackgroundImage = white;
+                    }
+                }
+                isWinner = false;
+                isDraw = false;
+                lblTurnColour.Text = "Red";
+                turn = true;
+                redPlayerScore = 0;
+                yellowPlayerScore = 0;
+                drawNum = 0;
+                roundTotal = 0;
+
             }
             else if (yellowPlayerScore > (roundTotal / 2))
             {
                 // Yellow Player wins current game
-            }
-            else
-            {
-                // No win or draw conditions met
+                //MessageBox messageWinYellow; 
+                MessageBox.Show(yellowText, winTitle);
+
+                // Reset game board for next round
+                for (int i = 0; i < 7; i++)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        btnTable[i, j].BackgroundImage = white;
+                    }
+                }
+                isWinner = false;
+                isDraw = false;
+                lblTurnColour.Text = "Red";
+                turn = true;
+                redPlayerScore = 0;
+                yellowPlayerScore = 0;
+                drawNum = 0;
+                roundTotal = 0;
             }
         }
     }

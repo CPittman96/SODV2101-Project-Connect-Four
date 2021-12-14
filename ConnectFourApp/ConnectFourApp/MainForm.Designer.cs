@@ -41,6 +41,10 @@ namespace ConnectFourApp
             this.lblTurnColour = new System.Windows.Forms.Label();
             this.lblScoreNumRed = new System.Windows.Forms.Label();
             this.lblScoreNumYellow = new System.Windows.Forms.Label();
+            this.lblScoreDraw = new System.Windows.Forms.Label();
+            this.lblScoreNumDraw = new System.Windows.Forms.Label();
+            this.lblRoundNum = new System.Windows.Forms.Label();
+            this.lblRoundTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblGameTitle
@@ -166,11 +170,55 @@ namespace ConnectFourApp
             this.lblScoreNumYellow.TabIndex = 11;
             this.lblScoreNumYellow.Text = "0";
             // 
+            // lblScoreDraw
+            // 
+            this.lblScoreDraw.AutoSize = true;
+            this.lblScoreDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreDraw.Location = new System.Drawing.Point(731, 112);
+            this.lblScoreDraw.Name = "lblScoreDraw";
+            this.lblScoreDraw.Size = new System.Drawing.Size(81, 29);
+            this.lblScoreDraw.TabIndex = 12;
+            this.lblScoreDraw.Text = "Draw :";
+            // 
+            // lblScoreNumDraw
+            // 
+            this.lblScoreNumDraw.AutoSize = true;
+            this.lblScoreNumDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreNumDraw.Location = new System.Drawing.Point(818, 113);
+            this.lblScoreNumDraw.Name = "lblScoreNumDraw";
+            this.lblScoreNumDraw.Size = new System.Drawing.Size(26, 29);
+            this.lblScoreNumDraw.TabIndex = 13;
+            this.lblScoreNumDraw.Text = "0";
+            // 
+            // lblRoundNum
+            // 
+            this.lblRoundNum.AutoSize = true;
+            this.lblRoundNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoundNum.Location = new System.Drawing.Point(538, 84);
+            this.lblRoundNum.Name = "lblRoundNum";
+            this.lblRoundNum.Size = new System.Drawing.Size(26, 29);
+            this.lblRoundNum.TabIndex = 14;
+            this.lblRoundNum.Text = "0";
+            // 
+            // lblRoundTitle
+            // 
+            this.lblRoundTitle.AutoSize = true;
+            this.lblRoundTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoundTitle.Location = new System.Drawing.Point(436, 84);
+            this.lblRoundTitle.Name = "lblRoundTitle";
+            this.lblRoundTitle.Size = new System.Drawing.Size(96, 29);
+            this.lblRoundTitle.TabIndex = 15;
+            this.lblRoundTitle.Text = "Round :";
+            // 
             // ConnectFourBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 861);
+            this.Controls.Add(this.lblRoundTitle);
+            this.Controls.Add(this.lblRoundNum);
+            this.Controls.Add(this.lblScoreNumDraw);
+            this.Controls.Add(this.lblScoreDraw);
             this.Controls.Add(this.lblScoreNumYellow);
             this.Controls.Add(this.lblScoreNumRed);
             this.Controls.Add(this.lblTurnColour);
@@ -206,6 +254,10 @@ namespace ConnectFourApp
         private System.Windows.Forms.Label lblTurnColour;
         private System.Windows.Forms.Label lblScoreNumRed;
         private System.Windows.Forms.Label lblScoreNumYellow;
+        private System.Windows.Forms.Label lblScoreDraw;
+        private System.Windows.Forms.Label lblScoreNumDraw;
+        private System.Windows.Forms.Label lblRoundNum;
+        private System.Windows.Forms.Label lblRoundTitle;
     }
 }
 
