@@ -49,7 +49,6 @@ namespace ConnectFourApp
         private bool turn = true;
         private bool winner = false;
         private bool draw = false;
-        private Button prevButton;
         public WindowsMediaPlayer gameMusicPlayer;
         public WindowsMediaPlayer gameEffectPlayer1;
         public WindowsMediaPlayer gameEffectPlayer2;
@@ -67,7 +66,7 @@ namespace ConnectFourApp
         public static string yellowText = "Yellow wins!!!";
         private int redPlayerScore = 0;
         private int yellowPlayerScore = 0;
-        string[] oddRounds = new string[] { "1", "3", "5", "7", "9" };
+        private string[] oddRounds = new string[] { "1", "3", "5", "7", "9" };
 
         private void generateTable()
         {
@@ -176,7 +175,7 @@ namespace ConnectFourApp
                 }
 
                 // Update Form label based on which player wins
-                if (lblTurnColour.Text == "Yellow") 
+                if (lblTurnColour.Text == "Yellow")
                 {
                     redPlayerScore++;
                     lblScoreNumRed.Text = redPlayerScore.ToString();
@@ -189,7 +188,6 @@ namespace ConnectFourApp
 
                 roundCurrent++;
                 lblRoundNum.Text = roundCurrent.ToString();
-
             }
             else
             {
@@ -467,7 +465,7 @@ namespace ConnectFourApp
                 }
             }
 
-            // Board Size is 42 = (6 * 7) 
+            // Board Size is 42 = (6 * 7)
             if (number >= 42)
             {
                 isDraw = true;
@@ -772,19 +770,17 @@ namespace ConnectFourApp
             }
         }
 
+        //this is not used
         private void lblRoundSelectTitle_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnRoundSelect_Click(object sender, EventArgs e)
         {
-
         }
 
         private void comboBoxRoundSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
